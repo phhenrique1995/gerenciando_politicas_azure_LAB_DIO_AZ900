@@ -1,111 +1,105 @@
 # LAB - Gerenciando Políticas em Acessos Azure. (AZ900 | DIO)
 
-Este documento tem como objetivo apresentar, de maneira simples e prática, como um estudante de DevOps iniciante pode entender e aplicar os conceitos de **governança**, **conformidade** e **segurança de acessos** na nuvem Microsoft Azure. O conteúdo foi elaborado com base nas aulas da trilha de formação AZ-900.
+Este guia foi elaborado com base nas aulas do curso AZ-900 da Microsoft Azure, com foco em **governança, conformidade e gerenciamento de políticas de acesso** dentro da nuvem Azure. Ele é escrito com linguagem acessível e prática, como se fosse feito por um estudante iniciante na área de DevOps.
 
 ---
 
-## 🔐 Governança e Conformidade no Azure
+## 📅 O que é Governança na Nuvem Azure?
 
-Governança em nuvem é o conjunto de regras, diretrizes e processos usados para controlar como os recursos são criados, gerenciados e acessados. Ela anda junto com a conformidade, que garante que sua infraestrutura esteja em linha com leis e políticas internas ou externas (como LGPD, ISO, etc).
-
----
-
-## ⚖️ Políticas de Acesso e Controle (RBAC)
-
-O Azure utiliza o modelo **RBAC (Role-Based Access Control)** para definir permissões com base em funções.
-
-### ✅ Exemplo de Funções Padrão:
-- **Proprietário (Owner)**: controle total
-- **Colaborador (Contributor)**: pode alterar recursos, mas não delegar permissões
-- **Leitor (Reader)**: acesso apenas leitura
-
-Essas permissões podem ser aplicadas por:
-- **Nível de Assinatura**
-- **Grupo de Recursos**
-- **Recurso Específico**
+Governança na nuvem é o conjunto de regras, processos e ferramentas que ajudam a controlar o uso e o comportamento dos recursos em ambientes de nuvem, garantindo **segurança, conformidade, eficiência e transparência**.
 
 ---
 
-## 📊 Monitoramento com Logs
+## 🔐 Políticas de Acesso e Controle
 
-### 🔢 Tipos de Logs:
-- **Activity Logs**: mostram quem fez o quê no ambiente Azure
-- **Diagnostic Logs**: mostram eventos específicos de serviços (ex: acesso a banco, upload em blob)
-- **Sign-In Logs**: mostram tentativas de login, localização e status (falha, sucesso)
+### RBAC (Controle de Acesso Baseado em Função)
 
-Esses logs podem ser:
-- Visualizados no portal
-- Exportados para uma conta de armazenamento
-- Integrados com ferramentas como Log Analytics e Microsoft Sentinel
+- Com RBAC você define **quem pode fazer o quê** dentro do Azure.
+- Exemplos de funções:
+  - Leitor (Read-only)
+  - Colaborador (pode criar e editar recursos)
+  - Administrador de rede (pode editar configurações de rede)
 
-### 🌍 Exemplo prático:
-- Criar alerta para tentativas de login com falha consecutiva
-- Identificar quem excluiu um recurso
-- Auditar mudanças em configurações de rede
+### Azure Policy
 
----
+- Permite **criar e aplicar regras de conformidade** para seus recursos.
+- Exemplo: impedir a criação de VMs fora da região "Brasil Sul".
+- Ótimo para ambientes com auditoria ou padrões ISO/LGPD.
 
-## ⚖️ Azure Policy - Políticas de Governança
+### Azure Blueprints
 
-O **Azure Policy** permite criar regras para garantir conformidade.
-
-### 🔢 Exemplos:
-- Não permitir criação de VMs fora da região "Brazil South"
-- Bloquear uso de máquinas de alto custo
-- Obrigar uso de tags em todos os recursos
-
-### 🔧 Como aplicar:
-1. Acesse "Políticas" no portal
-2. Crie uma **iniciativa** ou **definição de política**
-3. Aplique à assinatura ou grupo de recursos
-4. Acompanhe os recursos que estão ou não em conformidade
+- Pacotes de configuração que já incluem:
+  - Políticas
+  - Grupos de recursos
+  - Modelos ARM
+  - Controle de acesso (RBAC)
+- Ótimo para criar ambientes padronizados com conformidade.
 
 ---
 
-## 🌐 Portal de Confiança da Microsoft
+## 📊 Logs e Auditoria
 
-O **Microsoft Trust Center** é uma página pública com informações sobre:
-- Certificações de conformidade (ISO, SOC, GDPR, etc)
-- Estrutura de segurança da Azure
-- Relatórios e whitepapers de auditoria
+### Azure Activity Log
 
-Acesse: [https://www.microsoft.com/trust-center](https://www.microsoft.com/trust-center)
+- Registra **todas as ações administrativas** no portal (criação, exclusão, modificação de recursos).
 
----
+### Azure Monitor + Log Analytics
 
-## 📆 Auditoria: O que Validar?
+- Permite criar **dashboards e consultas personalizadas** sobre eventos e métricas dos recursos.
 
-Se uma auditoria for solicitada, esteja pronto para apresentar:
-- Quem tem acesso ao quê (RBAC)
-- Quais mudanças foram feitas e por quem (Activity Logs)
-- Políticas aplicadas e conformidade (Azure Policy)
-- Logs de login e tentativas suspeitas (Sign-In Logs)
-- Documentação de justificativas e exceções
+### Microsoft Sentinel (opcional)
+
+- SIEM nativo da Azure para **correlação de logs de segurança**, alerta e resposta a incidentes.
 
 ---
 
-## 📅 Boas Práticas de Governança
+## 🛡️ Portal de Confiança da Microsoft (Service Trust Portal)
 
-- Sempre use **grupos de recursos bem organizados**
-- Crie **orçamentos (budgets)** e **políticas de custo**
-- Aplique **políticas obrigatórias** antes da liberação de recursos
-- Utilize **logs e alertas** para monitoramento contínuo
-- Revise acessos periodicamente com base nas funções
-
----
-
-## 📄 Conclusão
-
-Governança e conformidade não são apenas "documentação para auditor". São ferramentas que evitam riscos, economizam recursos e ajudam você a manter um ambiente de nuvem seguro e organizado.
+- Acesse: [https://servicetrust.microsoft.com/](https://servicetrust.microsoft.com/)
+- Disponibiliza documentações sobre:
+  - Conformidade com ISO, GDPR, LGPD
+  - Auditorias realizadas pela Microsoft
+  - Práticas de segurança e privacidade na nuvem
 
 ---
 
-## 📅 Referências:
+## 🐺 Microsoft Purview (Compliance e Governança de Dados)
 
-- [Documentação Microsoft - Governança](https://learn.microsoft.com/pt-br/azure/governance/)
-- [Microsoft Trust Center](https://www.microsoft.com/trust-center)
-- [Documentação Azure Policy](https://learn.microsoft.com/pt-br/azure/governance/policy/overview)
-- [Trilha AZ-900 DIO](https://www.dio.me/)
+- Plataforma de governança de dados corporativa.
+- Ajuda a **identificar, classificar e proteger dados sensíveis**.
+- Ótimo para quem trabalha com dados de clientes ou regulamentações como LGPD e GDPR.
+
+### Principais Recursos do Purview:
+- Catálogo de dados
+- Mapeamento de linhagem (data lineage)
+- Insights de conformidade
+
+---
+
+## 🗓️ Ações para se Preparar para uma Auditoria
+
+1. **Ative e mantenha o Azure Policy em recursos sensíveis**
+2. **Use RBAC corretamente e documente os acessos**
+3. **Ative e mantenha logs de atividade e segurança**
+4. **Valide se as regiões e recursos estão em conformidade com padrões internos**
+5. **Use o Service Trust Portal como referência para requisitos de conformidade**
+6. **Implemente tags para rastrear finalidade e responsáveis por cada recurso**
+
+---
+
+## 📅 Conclusão
+
+Ao aplicar boas práticas de governança e controle de acesso, você não só melhora a segurança do seu ambiente Azure como também se prepara para auditorias e expansões futuras.
+
+---
+
+## 📑 Referências:
+
+- [Azure RBAC - Microsoft Docs](https://learn.microsoft.com/pt-br/azure/role-based-access-control/overview)
+- [Azure Policy](https://learn.microsoft.com/pt-br/azure/governance/policy/overview)
+- [Microsoft Purview](https://learn.microsoft.com/pt-br/azure/purview/)
+- [Service Trust Portal](https://servicetrust.microsoft.com/)
+- [Curso AZ-900 - DIO](https://www.dio.me/)
 
 ---
 
